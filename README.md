@@ -20,13 +20,8 @@
 - pandas
 
 ## 运行：
-shell:
-```
-    python train.py -c sgfm_b3.gid5
-
-```
-将会在configs目录中加载test.yml配置文件，并在runs目录内新建test目录存放训练数据。
-使用时应以test.yml为模板编写自己的配置文件进行训练。
+修改train.py 中的config名称，yml中相关参数并运行train.py。
+使用时应以.yml为模板编写自己的配置文件进行训练。
 
 
 ## 训练自己的数据：
@@ -48,11 +43,6 @@ shell:
             ├── test.txt
 ```
 'images'目录存放图像，'labels'目录存放标签，并保证图像和对应的标签同名，ImageSets存放划分的数据集的文件名，tools -> split_data.py  
-
-## TODO：
-- TTA
-- 混合精度训练
-- DDP分布式训练
 
 ## 注意事项：
 图像读写用到opencv（训练时）和gdal，注意opencv读入是按BGR排序的；  

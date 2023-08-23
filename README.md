@@ -41,14 +41,20 @@ or
 推荐将数据集整理为以下目录结构：
 ```shell
     ├── {dataset_dir}
-    │   ├── train
-    │       ├── images
-    │       ├── labels
-    │   ├── val
-    │       ├── images
-    │       ├── labels
+    │   ├── images
+    │       ├── 1.tif
+    │       ├── 2.tif
+    │       ├── ...
+    │   ├── labels
+    │       ├── 1.png
+    │       ├── 2.png
+    │       ├── ...
+    │   ├── ImageSets
+            ├── train.txt
+            ├── val.txt
+            ├── test.txt
 ```
-'images'目录存放图像，'labels'目录存放标签，并保证图像和对应的标签同名。  
+'images'目录存放图像，'labels'目录存放标签，并保证图像和对应的标签同名，ImageSets存放划分的数据集的文件名，tools -> split_data.py  
 
 ## TODO：
 - TTA

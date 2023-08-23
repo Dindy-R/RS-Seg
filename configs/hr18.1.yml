@@ -1,0 +1,57 @@
+
+mode: "train"    # "train", "infer"
+run_name: ""
+run_dir: "./runs/"
+comment: ""    # 其他备注信息
+
+dataset: {
+  name: "",
+  train_dirs: [ "../datasets/merge_v1/train" ],
+  val_dirs: [ "../datasets/merge_v1/val" ],
+  test_dirs: [ "../datasets/merge_v1/val" ],
+  cls_info: {
+    background: 0,
+    building: 1
+  },
+  ignore_index: 255,
+}
+
+network: {
+  type: "custom",    # "smp, ""custom", ...
+  name: "HRNet",
+  encoder: "hrnet_w18",
+  in_size: 512,
+  in_channel: 3,
+  out_channel: 2,
+  pretrained: "./data/hrnet_w18.pth"
+}
+
+optimizer: {
+  type: "AdamW",
+  lr: 0.0001,
+#  betas: [0.9, 0.999],
+  weight_decay: 0.01,
+}
+
+train: {
+  epochs: 20,
+  batch_size: 4,
+  smoothing: 0.1,
+  save_inter: -1,  # 保存间隔(epoch), 小于1表示不备份
+  plot: true
+}
+
+infer: {
+  ckpt_name: "best.pt",    # full path = os.path.join(run_dir, run_name, "ckpt", ckpt_name)
+  in_dir: "../data/eval/refine_20220624/image/masked",
+  out_dir: "eval",   # full path = os.path.join(run_dir, out_dir, "results")
+  l1_win_sz: 3712,  # (512-128)*5+512=2432, (512-128)*9+512=3968, (1024-128)*3+1024=3712,
+  l1_overlap: 256,
+  l2_win_sz: 1024,
+  l2_overlap: 128,
+  batch_size: 1,
+  tta: false,
+  draw: false,
+  evaluate: false
+}
+

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 '''
 @Time       : 12/28/21 10:35 AM
-@Author     : Jiang.xx
-@Email      : cxyth@live.com
 @Description: 分析数据集常用代码
 '''
 import os
